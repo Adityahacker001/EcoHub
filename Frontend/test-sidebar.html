@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Sidebar Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom responsive test */
+        @media (max-width: 1023px) {
+            .mobile-test { background-color: red; }
+        }
+        @media (min-width: 1024px) {
+            .desktop-test { background-color: green; }
+        }
+    </style>
+</head>
+<body>
+    <div class="h-screen flex items-center justify-center">
+        <div class="text-center">
+            <h1 class="text-2xl font-bold mb-4">Mobile Sidebar Test</h1>
+            
+            <!-- Mobile Test -->
+            <div class="mobile-test lg:hidden p-4 mb-4 text-white rounded">
+                <p>This should show on Mobile/Tablet (< 1024px)</p>
+                <p>Background should be RED</p>
+            </div>
+            
+            <!-- Desktop Test -->
+            <div class="desktop-test hidden lg:block p-4 mb-4 text-white rounded">
+                <p>This should show on Desktop (>= 1024px)</p>
+                <p>Background should be GREEN</p>
+            </div>
+            
+            <!-- Hamburger Icon Test -->
+            <div class="lg:hidden">
+                <button class="p-2 bg-blue-900 text-white rounded">
+                    ☰ Mobile Menu Button (should only show on mobile)
+                </button>
+            </div>
+            
+            <div class="hidden lg:block">
+                <p class="text-gray-600">Desktop view - no hamburger needed</p>
+            </div>
+            
+            <div class="mt-4 text-sm text-gray-500">
+                <p>Screen width: <span id="width"></span>px</p>
+                <p>Breakpoint: <span id="breakpoint"></span></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function updateSize() {
+            const width = window.innerWidth;
+            document.getElementById('width').textContent = width;
+            document.getElementById('breakpoint').textContent = width >= 1024 ? 'Desktop (lg+)' : 'Mobile/Tablet';
+        }
+        
+        window.addEventListener('resize', updateSize);
+        updateSize();
+    </script>
+</body>
+</html>
